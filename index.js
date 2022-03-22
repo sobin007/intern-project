@@ -3,14 +3,14 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const helmet = require('helmet');
-const Sentry =require('@sentry/node')
+const Sentry = require('@sentry/node')
 var useragent = require('express-useragent');
 var nodemailer = require('nodemailer');
 const Tracing = require("@sentry/tracing");
 let app = express();
 
 ///////route file declaration//////////
-const userRoute = require('./routes/userRoute')
+const userRoute = require('./Routes/userRoute')
 
 app.use(bodyParser.urlencoded({
     extended: true, limit: '150mb'
