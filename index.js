@@ -12,8 +12,6 @@ let app = express();
 ///////route file declaration//////////
 const userRoute = require('./Routes/userRoute')
 
-app.use(cors());
-app.use(helmet());
 app.use(bodyParser.urlencoded({
     extended: true, limit: '150mb'
 }));
@@ -59,6 +57,14 @@ setTimeout(() => {
 var db = mongoose.connection;
 
 var port = process.env.PORT || 4007;
+
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
 
 app.use(cors());
 app.use(helmet());
