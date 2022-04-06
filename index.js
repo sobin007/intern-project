@@ -12,6 +12,8 @@ let app = express();
 ///////route file declaration//////////
 const userRoute = require('./Routes/userRoute')
 
+app.use(cors());
+app.use(helmet());
 app.use(bodyParser.urlencoded({
     extended: true, limit: '150mb'
 }));
