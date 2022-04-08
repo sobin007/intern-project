@@ -355,18 +355,18 @@ router.post('/edit/user', async (req, res) => {
 
 
 
-router.post('/user/profile', async (req, res) => {
+router.post('/user/profile',auth, async (req, res) => {
     try {
-        var { id } = req.body
-
-        if (id == null || id == undefined) {
+        var id=req.user.id
+        //console.log(id)
+        if (id === null || id === undefined) {
             res.status(200).json({
                 status: false,
                 msg: "Id not provided"
             });
             return;
         }
-        var data = await userModel.findOne({ _id: id, status: 'active' })
+        var data = await userModel.findOne({ _id: id, status: 'active' },{password:0})
         if (data == null || data == undefined) {
             res.status(200).json({
                 status: false,
